@@ -16,6 +16,7 @@
 #import "YourGamesViewController.h"
 #import <StartApp/StartApp.h>
 #import "ShopViewController.h"
+#import "PlayWithFriendViewController.h"
 
 @interface MainMenuViewController ()<STABannerDelegateProtocol>{
      STABannerView* bannerView;
@@ -29,7 +30,7 @@
 @property (strong, nonatomic)UILabel *titleLabel;
 @property (strong, nonatomic)UIImageView *backgroundImageView;
 @property (strong, nonatomic)UIImageView *bannerImageView;
-
+@property (strong, nonatomic)UIButton *playFriendsButton;
 
 @end
 
@@ -60,6 +61,7 @@
     [self.view addSubview:self.settingsButton];
     [self.view addSubview:self.shopButton];
     [self.view addSubview:self.yourGamesButton];
+    [self.view addSubview:self.playFriendsButton];
 }
 
 -(void)defineLayouts{
@@ -87,7 +89,7 @@
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.bannerImageView.mas_bottom).offset(20.0f);
         make.width.equalTo(self.view).offset(-40.0f);
-        make.height.equalTo(@((self.view.frame.size.height - self.bannerImageView.frame.size.height)/4 - 80.0f));
+        make.height.equalTo(@((self.view.frame.size.height - self.bannerImageView.frame.size.height)/5 - 60.0f));
     }];
     [self.joinAGameButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -110,6 +112,12 @@
     [self.shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.yourGamesButton.mas_bottom).offset(20.0f);
+        make.width.equalTo(self.yourGamesButton);
+        make.height.equalTo(self.yourGamesButton);
+    }];
+    [self.playFriendsButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.shopButton.mas_bottom).offset(20.0f);
         make.width.equalTo(self.yourGamesButton);
         make.height.equalTo(self.yourGamesButton);
     }];
@@ -167,6 +175,15 @@
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationTransition: trans forView: [self.view window] cache: YES];
     [self presentViewController: shopController animated: NO completion:nil];
+    [UIView commitAnimations];
+}
+-(void)goToPlayFriends{
+    PlayWithFriendViewController *playFriendsController = [PlayWithFriendViewController new];
+    UIViewAnimationTransition trans = UIViewAnimationTransitionCurlUp;
+    [UIView beginAnimations: nil context: nil];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationTransition: trans forView: [self.view window] cache: YES];
+    [self presentViewController: playFriendsController animated: NO completion:nil];
     [UIView commitAnimations];
 }
 #pragma mark -- Properties
@@ -245,6 +262,23 @@
         _yourGamesButton.titleLabel.textColor = [UIColor whiteColor];
     }
     return _yourGamesButton;
+}
+
+-(UIButton *)playFriendsButton{
+    if(!_playFriendsButton){
+        _playFriendsButton = [UIButton new];
+        _playFriendsButton.backgroundColor = [UIColor aod_colorWithHexValue:0x9370DB];
+        _playFriendsButton.layer.cornerRadius = 10.0f;
+        _playFriendsButton.layer.masksToBounds = YES;
+        [_playFriendsButton setTitle:@"Play Friends" forState:UIControlStateNormal];
+        [_playFriendsButton.titleLabel setFont:[UIFont fontWithName:@"BubblegumSans-Regular" size:30]];
+        [_playFriendsButton addTarget:self action:@selector(goToPlayFriends) forControlEvents:UIControlEventTouchUpInside];
+        _playFriendsButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        _playFriendsButton.titleLabel.minimumScaleFactor = 0.2;
+        _playFriendsButton.titleLabel.textColor = [UIColor whiteColor];
+        
+    }
+    return _playFriendsButton;
 }
 
 - (UILabel *)titleLabel {

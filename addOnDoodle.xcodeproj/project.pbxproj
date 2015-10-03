@@ -12,8 +12,6 @@
 		E82B09B21BAD881D008FBAC7 /* SelectedGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82B09B11BAD881D008FBAC7 /* SelectedGameViewController.m */; };
 		E82B09B51BAD8CB6008FBAC7 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82B09B41BAD8CB6008FBAC7 /* ShopViewController.m */; };
 		E82B09B81BAD8CDF008FBAC7 /* ColorPurchases.m in Sources */ = {isa = PBXBuildFile; fileRef = E82B09B71BAD8CDF008FBAC7 /* ColorPurchases.m */; };
-		E82B09BB1BAD8EC9008FBAC7 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E82B09B91BAD8EC9008FBAC7 /* StartApp.bundle */; };
-		E82B09BC1BAD8EC9008FBAC7 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09BA1BAD8EC9008FBAC7 /* StartApp.framework */; };
 		E82B09BE1BAD8EFE008FBAC7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09BD1BAD8EFE008FBAC7 /* CoreTelephony.framework */; };
 		E82B09C01BAD8F1A008FBAC7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09BF1BAD8F1A008FBAC7 /* AdSupport.framework */; };
 		E82B09C21BAD8F28008FBAC7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09C11BAD8F28008FBAC7 /* CoreMedia.framework */; };
@@ -64,6 +62,10 @@
 		E83E9CB31BA84B5D006C41F7 /* NSObject+BTRACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E83E9CB21BA84B5D006C41F7 /* NSObject+BTRACAdditions.m */; };
 		E83E9CB61BA85536006C41F7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83E9CB51BA85536006C41F7 /* SettingsViewController.m */; };
 		E83E9CB91BA85855006C41F7 /* JoinAGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83E9CB81BA85855006C41F7 /* JoinAGameViewController.m */; };
+		E8464E871BBABF2A005BC90D /* addDood.png in Resources */ = {isa = PBXBuildFile; fileRef = E8464E861BBABF2A005BC90D /* addDood.png */; };
+		E8464E8A1BBABFFB005BC90D /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8464E881BBABFFB005BC90D /* StartApp.bundle */; };
+		E8464E8B1BBABFFB005BC90D /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8464E891BBABFFB005BC90D /* StartApp.framework */; };
+		E8464E8E1BBAC182005BC90D /* PlayWithFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8464E8D1BBAC182005BC90D /* PlayWithFriendViewController.m */; };
 		E8C6B8061B9DE3ED002B1C78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C6B8051B9DE3ED002B1C78 /* main.m */; };
 		E8C6B8091B9DE3ED002B1C78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C6B8081B9DE3ED002B1C78 /* AppDelegate.m */; };
 		E8C6B80C1B9DE3ED002B1C78 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C6B80B1B9DE3ED002B1C78 /* MainMenuViewController.m */; };
@@ -97,8 +99,6 @@
 		E82B09B41BAD8CB6008FBAC7 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
 		E82B09B61BAD8CDF008FBAC7 /* ColorPurchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPurchases.h; sourceTree = "<group>"; };
 		E82B09B71BAD8CDF008FBAC7 /* ColorPurchases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPurchases.m; sourceTree = "<group>"; };
-		E82B09B91BAD8EC9008FBAC7 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = StartApp.bundle; path = "../Downloads/IOS-InApp SDK-InApp-3.1.0 2/StartApp.bundle"; sourceTree = "<group>"; };
-		E82B09BA1BAD8EC9008FBAC7 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartApp.framework; path = "../Downloads/IOS-InApp SDK-InApp-3.1.0 2/StartApp.framework"; sourceTree = "<group>"; };
 		E82B09BD1BAD8EFE008FBAC7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E82B09BF1BAD8F1A008FBAC7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		E82B09C11BAD8F28008FBAC7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -156,6 +156,11 @@
 		E83E9CB51BA85536006C41F7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		E83E9CB71BA85855006C41F7 /* JoinAGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinAGameViewController.h; sourceTree = "<group>"; };
 		E83E9CB81BA85855006C41F7 /* JoinAGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinAGameViewController.m; sourceTree = "<group>"; };
+		E8464E861BBABF2A005BC90D /* addDood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addDood.png; path = addOnDoodle/images/addDood.png; sourceTree = "<group>"; };
+		E8464E881BBABFFB005BC90D /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = StartApp.bundle; path = "IOS-InApp SDK-InApp-3.1.0 2/StartApp.bundle"; sourceTree = "<group>"; };
+		E8464E891BBABFFB005BC90D /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartApp.framework; path = "IOS-InApp SDK-InApp-3.1.0 2/StartApp.framework"; sourceTree = "<group>"; };
+		E8464E8C1BBAC182005BC90D /* PlayWithFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayWithFriendViewController.h; sourceTree = "<group>"; };
+		E8464E8D1BBAC182005BC90D /* PlayWithFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayWithFriendViewController.m; sourceTree = "<group>"; };
 		E8C6B8001B9DE3ED002B1C78 /* addOnDoodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = addOnDoodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C6B8041B9DE3ED002B1C78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8C6B8051B9DE3ED002B1C78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -188,9 +193,9 @@
 				E82B09D61BAD9201008FBAC7 /* VungleSDK.framework in Frameworks */,
 				E82B09C21BAD8F28008FBAC7 /* CoreMedia.framework in Frameworks */,
 				E82B09C01BAD8F1A008FBAC7 /* AdSupport.framework in Frameworks */,
+				E8464E8B1BBABFFB005BC90D /* StartApp.framework in Frameworks */,
 				E82B09BE1BAD8EFE008FBAC7 /* CoreTelephony.framework in Frameworks */,
 				21E5ABCD53A04E6676ADAADB /* libPods-addOnDoodle.a in Frameworks */,
-				E82B09BC1BAD8EC9008FBAC7 /* StartApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +320,8 @@
 			children = (
 				E8C6B8071B9DE3ED002B1C78 /* AppDelegate.h */,
 				E8C6B8081B9DE3ED002B1C78 /* AppDelegate.m */,
+				E8464E8C1BBAC182005BC90D /* PlayWithFriendViewController.h */,
+				E8464E8D1BBAC182005BC90D /* PlayWithFriendViewController.m */,
 				E8C6B80A1B9DE3ED002B1C78 /* MainMenuViewController.h */,
 				E8C6B80B1B9DE3ED002B1C78 /* MainMenuViewController.m */,
 				E83E9CAE1BA84AA0006C41F7 /* LogInViewController.h */,
@@ -380,6 +387,7 @@
 			children = (
 				E82B09E81BB9757A008FBAC7 /* icons */,
 				E83E9CA51BA70E79006C41F7 /* raindrop.png */,
+				E8464E861BBABF2A005BC90D /* addDood.png */,
 				E83E9CA91BA83B60006C41F7 /* searchfield.png */,
 				E82B0A171BB98093008FBAC7 /* DMIcon3Jpg.jpg */,
 				E83E9CA71BA82FEA006C41F7 /* undoIcon.png */,
@@ -393,6 +401,8 @@
 		FC3999AFF7C895D7D751B19E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8464E881BBABFFB005BC90D /* StartApp.bundle */,
+				E8464E891BBABFFB005BC90D /* StartApp.framework */,
 				E82B09E41BAEC02B008FBAC7 /* WebKit.framework */,
 				E82B09E21BAEC012008FBAC7 /* MediaPlayer.framework */,
 				E82B09E01BAEC004008FBAC7 /* libsqlite3.dylib */,
@@ -403,8 +413,6 @@
 				E82B09C11BAD8F28008FBAC7 /* CoreMedia.framework */,
 				E82B09BF1BAD8F1A008FBAC7 /* AdSupport.framework */,
 				E82B09BD1BAD8EFE008FBAC7 /* CoreTelephony.framework */,
-				E82B09B91BAD8EC9008FBAC7 /* StartApp.bundle */,
-				E82B09BA1BAD8EC9008FBAC7 /* StartApp.framework */,
 				8070D53586C6580994EC7FEF /* libPods-addOnDoodle.a */,
 			);
 			name = Frameworks;
@@ -498,6 +506,7 @@
 				E82B09D31BAD9201008FBAC7 /* vg_mute_off.png in Resources */,
 				E82B0A011BB9758E008FBAC7 /* Icon-40@2x.png in Resources */,
 				E82B0A0F1BB9758E008FBAC7 /* Icon.png in Resources */,
+				E8464E8A1BBABFFB005BC90D /* StartApp.bundle in Resources */,
 				E83E9CA81BA82FEA006C41F7 /* undoIcon.png in Resources */,
 				E82B0A0B1BB9758E008FBAC7 /* Icon-72.png in Resources */,
 				E82B09FF1BB9758E008FBAC7 /* Contents.json in Resources */,
@@ -512,11 +521,11 @@
 				E82B09D51BAD9201008FBAC7 /* vg_privacy.png in Resources */,
 				E82B0A121BB9758E008FBAC7 /* iTunesArtwork@2x.png in Resources */,
 				E82B0A101BB9758E008FBAC7 /* Icon@2x.png in Resources */,
+				E8464E871BBABF2A005BC90D /* addDood.png in Resources */,
 				E82B0A0A1BB9758E008FBAC7 /* Icon-60.png in Resources */,
 				E82B0A111BB9758E008FBAC7 /* iTunesArtwork.png in Resources */,
 				E82B0A091BB9758E008FBAC7 /* Icon-Small@3x.png in Resources */,
 				E82B09D41BAD9201008FBAC7 /* vg_mute_on.png in Resources */,
-				E82B09BB1BAD8EC9008FBAC7 /* StartApp.bundle in Resources */,
 				E82B0A0C1BB9758E008FBAC7 /* Icon-72@2x.png in Resources */,
 				E8C6B8111B9DE3ED002B1C78 /* Images.xcassets in Resources */,
 				E82B09D21BAD9201008FBAC7 /* vg_cta.png in Resources */,
@@ -583,6 +592,7 @@
 			files = (
 				E82B09B81BAD8CDF008FBAC7 /* ColorPurchases.m in Sources */,
 				E83E9CB01BA84AA0006C41F7 /* LogInViewController.m in Sources */,
+				E8464E8E1BBAC182005BC90D /* PlayWithFriendViewController.m in Sources */,
 				E82B09AF1BAD828F008FBAC7 /* YourGamesViewController.m in Sources */,
 				E83E9CAD1BA84A62006C41F7 /* LogInViewModel.m in Sources */,
 				E83E9CB91BA85855006C41F7 /* JoinAGameViewController.m in Sources */,
@@ -729,6 +739,9 @@
 					"SDK-InApp-3.1.0",
 					2,
 					/Users/d_walker91/Downloads/VungleSDK.embeddedframework,
+					"$(PROJECT_DIR)/IOS-InApp",
+					"SDK-InApp-3.1.0",
+					2,
 				);
 				INFOPLIST_FILE = addOnDoodle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -748,6 +761,9 @@
 					"SDK-InApp-3.1.0",
 					2,
 					/Users/d_walker91/Downloads/VungleSDK.embeddedframework,
+					"$(PROJECT_DIR)/IOS-InApp",
+					"SDK-InApp-3.1.0",
+					2,
 				);
 				INFOPLIST_FILE = addOnDoodle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

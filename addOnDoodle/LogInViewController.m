@@ -102,7 +102,7 @@
     }];
     [self.loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.top.equalTo(self.containerView.mas_top).offset(-80.0f);
+        make.top.equalTo(self.bannerBackground.mas_bottom).offset(10.0f);
         make.width.equalTo(self.view);
         make.height.equalTo(@50);
     }];
