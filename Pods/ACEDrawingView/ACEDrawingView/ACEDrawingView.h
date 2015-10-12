@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
 // load external image
 - (void)loadImage:(UIImage *)image;
 - (void)loadImageData:(NSData *)imageData;
+-(CGFloat)getTheWidth:(CGFloat)width;
 
 // erase all
 - (void)clear;

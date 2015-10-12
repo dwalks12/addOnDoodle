@@ -23,7 +23,6 @@
 		E82B09D31BAD9201008FBAC7 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = E82B09CC1BAD9201008FBAC7 /* vg_mute_off.png */; };
 		E82B09D41BAD9201008FBAC7 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E82B09CD1BAD9201008FBAC7 /* vg_mute_on.png */; };
 		E82B09D51BAD9201008FBAC7 /* vg_privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = E82B09CE1BAD9201008FBAC7 /* vg_privacy.png */; };
-		E82B09D61BAD9201008FBAC7 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09CF1BAD9201008FBAC7 /* VungleSDK.framework */; };
 		E82B09D91BAD9441008FBAC7 /* BorderedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E82B09D81BAD9441008FBAC7 /* BorderedButton.m */; };
 		E82B09DF1BAEBFD8008FBAC7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09DE1BAEBFD8008FBAC7 /* AudioToolbox.framework */; };
 		E82B09E11BAEC004008FBAC7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09E01BAEC004008FBAC7 /* libsqlite3.dylib */; };
@@ -62,8 +61,6 @@
 		E83E9CB31BA84B5D006C41F7 /* NSObject+BTRACAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E83E9CB21BA84B5D006C41F7 /* NSObject+BTRACAdditions.m */; };
 		E83E9CB61BA85536006C41F7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83E9CB51BA85536006C41F7 /* SettingsViewController.m */; };
 		E83E9CB91BA85855006C41F7 /* JoinAGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83E9CB81BA85855006C41F7 /* JoinAGameViewController.m */; };
-		E843C0BE1BC2A35600D533BF /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E843C0BC1BC2A35600D533BF /* StartApp.bundle */; settings = {ASSET_TAGS = (); }; };
-		E843C0BF1BC2A35600D533BF /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E843C0BD1BC2A35600D533BF /* StartApp.framework */; settings = {ASSET_TAGS = (); }; };
 		E8464E871BBABF2A005BC90D /* addDood.png in Resources */ = {isa = PBXBuildFile; fileRef = E8464E861BBABF2A005BC90D /* addDood.png */; };
 		E8464E8E1BBAC182005BC90D /* PlayWithFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8464E8D1BBAC182005BC90D /* PlayWithFriendViewController.m */; };
 		E8C6B8061B9DE3ED002B1C78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C6B8051B9DE3ED002B1C78 /* main.m */; };
@@ -75,6 +72,16 @@
 		E8C6B8201B9DE3ED002B1C78 /* addOnDoodleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C6B81F1B9DE3ED002B1C78 /* addOnDoodleTests.m */; };
 		E8C6B82B1B9E2104002B1C78 /* AODHexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C6B82A1B9E2104002B1C78 /* AODHexColors.m */; };
 		E8C6B82E1B9E2691002B1C78 /* setting-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E8C6B82D1B9E2691002B1C78 /* setting-icon.png */; };
+		FF2A9FF61BC2AE39003876C3 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82B09CF1BAD9201008FBAC7 /* VungleSDK.framework */; };
+		FF2A9FF81BC2B597003876C3 /* icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = FF2A9FF71BC2B597003876C3 /* icon2.png */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F4E1BC5432000DB7394 /* StartApp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FFFE1F4C1BC5432000DB7394 /* StartApp.bundle */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F4F1BC5432000DB7394 /* StartApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFFE1F4D1BC5432000DB7394 /* StartApp.framework */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F541BC6A92500DB7394 /* PlayerAndPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFE1F531BC6A92500DB7394 /* PlayerAndPlayerViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F561BC9110700DB7394 /* Line.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFE1F551BC9110700DB7394 /* Line.png */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F591BC91A8900DB7394 /* ContinuePlayingFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFE1F581BC91A8900DB7394 /* ContinuePlayingFriendViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F5C1BCBA92900DB7394 /* FriendsGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFE1F5B1BCBA92900DB7394 /* FriendsGamesViewController.m */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F5E1BCBB2AA00DB7394 /* paintBrush.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFE1F5D1BCBB2AA00DB7394 /* paintBrush.png */; settings = {ASSET_TAGS = (); }; };
+		FFFE1F601BCBD1FA00DB7394 /* colorPalette.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFE1F5F1BCBD1FA00DB7394 /* colorPalette.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,8 +163,6 @@
 		E83E9CB51BA85536006C41F7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		E83E9CB71BA85855006C41F7 /* JoinAGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinAGameViewController.h; sourceTree = "<group>"; };
 		E83E9CB81BA85855006C41F7 /* JoinAGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinAGameViewController.m; sourceTree = "<group>"; };
-		E843C0BC1BC2A35600D533BF /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = StartApp.bundle; path = "IOS-InApp SDK-InApp-3.1.0 2/StartApp.bundle"; sourceTree = "<group>"; };
-		E843C0BD1BC2A35600D533BF /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartApp.framework; path = "IOS-InApp SDK-InApp-3.1.0 2/StartApp.framework"; sourceTree = "<group>"; };
 		E8464E861BBABF2A005BC90D /* addDood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addDood.png; path = addOnDoodle/images/addDood.png; sourceTree = "<group>"; };
 		E8464E8C1BBAC182005BC90D /* PlayWithFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayWithFriendViewController.h; sourceTree = "<group>"; };
 		E8464E8D1BBAC182005BC90D /* PlayWithFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayWithFriendViewController.m; sourceTree = "<group>"; };
@@ -177,6 +182,18 @@
 		E8C6B8291B9E2104002B1C78 /* AODHexColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AODHexColors.h; sourceTree = "<group>"; };
 		E8C6B82A1B9E2104002B1C78 /* AODHexColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AODHexColors.m; sourceTree = "<group>"; };
 		E8C6B82D1B9E2691002B1C78 /* setting-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setting-icon.png"; path = "addOnDoodle/images/setting-icon.png"; sourceTree = "<group>"; };
+		FF2A9FF71BC2B597003876C3 /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon2.png; path = addOnDoodle/images/icon2.png; sourceTree = "<group>"; };
+		FFFE1F4C1BC5432000DB7394 /* StartApp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = StartApp.bundle; path = "IOS-InApp SDK-InApp-3/StartApp.bundle"; sourceTree = "<group>"; };
+		FFFE1F4D1BC5432000DB7394 /* StartApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartApp.framework; path = "IOS-InApp SDK-InApp-3/StartApp.framework"; sourceTree = "<group>"; };
+		FFFE1F521BC6A92500DB7394 /* PlayerAndPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAndPlayerViewController.h; sourceTree = "<group>"; };
+		FFFE1F531BC6A92500DB7394 /* PlayerAndPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAndPlayerViewController.m; sourceTree = "<group>"; };
+		FFFE1F551BC9110700DB7394 /* Line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Line.png; path = addOnDoodle/images/Line.png; sourceTree = "<group>"; };
+		FFFE1F571BC91A8900DB7394 /* ContinuePlayingFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContinuePlayingFriendViewController.h; sourceTree = "<group>"; };
+		FFFE1F581BC91A8900DB7394 /* ContinuePlayingFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContinuePlayingFriendViewController.m; sourceTree = "<group>"; };
+		FFFE1F5A1BCBA92900DB7394 /* FriendsGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsGamesViewController.h; sourceTree = "<group>"; };
+		FFFE1F5B1BCBA92900DB7394 /* FriendsGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsGamesViewController.m; sourceTree = "<group>"; };
+		FFFE1F5D1BCBB2AA00DB7394 /* paintBrush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paintBrush.png; path = addOnDoodle/images/paintBrush.png; sourceTree = "<group>"; };
+		FFFE1F5F1BCBD1FA00DB7394 /* colorPalette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colorPalette.png; path = addOnDoodle/images/colorPalette.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,11 +206,11 @@
 				E82B09E11BAEC004008FBAC7 /* libsqlite3.dylib in Frameworks */,
 				E82B09DF1BAEBFD8008FBAC7 /* AudioToolbox.framework in Frameworks */,
 				E82B09C61BAD8F42008FBAC7 /* libz.dylib in Frameworks */,
+				FF2A9FF61BC2AE39003876C3 /* VungleSDK.framework in Frameworks */,
 				E82B09C41BAD8F34008FBAC7 /* AVFoundation.framework in Frameworks */,
-				E82B09D61BAD9201008FBAC7 /* VungleSDK.framework in Frameworks */,
 				E82B09C21BAD8F28008FBAC7 /* CoreMedia.framework in Frameworks */,
 				E82B09C01BAD8F1A008FBAC7 /* AdSupport.framework in Frameworks */,
-				E843C0BF1BC2A35600D533BF /* StartApp.framework in Frameworks */,
+				FFFE1F4F1BC5432000DB7394 /* StartApp.framework in Frameworks */,
 				E82B09BE1BAD8EFE008FBAC7 /* CoreTelephony.framework in Frameworks */,
 				21E5ABCD53A04E6676ADAADB /* libPods-addOnDoodle.a in Frameworks */,
 			);
@@ -295,8 +312,8 @@
 		E8C6B7F71B9DE3ED002B1C78 = {
 			isa = PBXGroup;
 			children = (
-				E843C0BC1BC2A35600D533BF /* StartApp.bundle */,
-				E843C0BD1BC2A35600D533BF /* StartApp.framework */,
+				FFFE1F4C1BC5432000DB7394 /* StartApp.bundle */,
+				FFFE1F4D1BC5432000DB7394 /* StartApp.framework */,
 				E83E9C9F1BA60050006C41F7 /* font */,
 				E8C6B82C1B9E2682002B1C78 /* images */,
 				E8C6B8021B9DE3ED002B1C78 /* addOnDoodle */,
@@ -323,6 +340,12 @@
 				E8C6B8081B9DE3ED002B1C78 /* AppDelegate.m */,
 				E8464E8C1BBAC182005BC90D /* PlayWithFriendViewController.h */,
 				E8464E8D1BBAC182005BC90D /* PlayWithFriendViewController.m */,
+				FFFE1F5A1BCBA92900DB7394 /* FriendsGamesViewController.h */,
+				FFFE1F5B1BCBA92900DB7394 /* FriendsGamesViewController.m */,
+				FFFE1F571BC91A8900DB7394 /* ContinuePlayingFriendViewController.h */,
+				FFFE1F581BC91A8900DB7394 /* ContinuePlayingFriendViewController.m */,
+				FFFE1F521BC6A92500DB7394 /* PlayerAndPlayerViewController.h */,
+				FFFE1F531BC6A92500DB7394 /* PlayerAndPlayerViewController.m */,
 				E8C6B80A1B9DE3ED002B1C78 /* MainMenuViewController.h */,
 				E8C6B80B1B9DE3ED002B1C78 /* MainMenuViewController.m */,
 				E83E9CAE1BA84AA0006C41F7 /* LogInViewController.h */,
@@ -389,11 +412,15 @@
 				E82B09E81BB9757A008FBAC7 /* icons */,
 				E83E9CA51BA70E79006C41F7 /* raindrop.png */,
 				E8464E861BBABF2A005BC90D /* addDood.png */,
+				FFFE1F5D1BCBB2AA00DB7394 /* paintBrush.png */,
+				FFFE1F551BC9110700DB7394 /* Line.png */,
 				E83E9CA91BA83B60006C41F7 /* searchfield.png */,
+				FF2A9FF71BC2B597003876C3 /* icon2.png */,
 				E82B0A171BB98093008FBAC7 /* DMIcon3Jpg.jpg */,
 				E83E9CA71BA82FEA006C41F7 /* undoIcon.png */,
 				E82B0A151BB9800F008FBAC7 /* addOnDoodle.png */,
 				E82B0A131BB9775C008FBAC7 /* eraser.png */,
+				FFFE1F5F1BCBD1FA00DB7394 /* colorPalette.png */,
 				E8C6B82D1B9E2691002B1C78 /* setting-icon.png */,
 			);
 			name = images;
@@ -503,9 +530,9 @@
 				E83E9CA11BA6017C006C41F7 /* BubblegumSans-Regular.ttf in Resources */,
 				E82B0A001BB9758E008FBAC7 /* Icon-40.png in Resources */,
 				E82B09D31BAD9201008FBAC7 /* vg_mute_off.png in Resources */,
+				FFFE1F561BC9110700DB7394 /* Line.png in Resources */,
 				E82B0A011BB9758E008FBAC7 /* Icon-40@2x.png in Resources */,
 				E82B0A0F1BB9758E008FBAC7 /* Icon.png in Resources */,
-				E843C0BE1BC2A35600D533BF /* StartApp.bundle in Resources */,
 				E83E9CA81BA82FEA006C41F7 /* undoIcon.png in Resources */,
 				E82B0A0B1BB9758E008FBAC7 /* Icon-72.png in Resources */,
 				E82B09FF1BB9758E008FBAC7 /* Contents.json in Resources */,
@@ -531,6 +558,9 @@
 				E82B0A061BB9758E008FBAC7 /* Icon-76@2x.png in Resources */,
 				E82B0A161BB9800F008FBAC7 /* addOnDoodle.png in Resources */,
 				E82B0A051BB9758E008FBAC7 /* Icon-76.png in Resources */,
+				FFFE1F5E1BCBB2AA00DB7394 /* paintBrush.png in Resources */,
+				FF2A9FF81BC2B597003876C3 /* icon2.png in Resources */,
+				FFFE1F601BCBD1FA00DB7394 /* colorPalette.png in Resources */,
 				E83E9CA61BA70E79006C41F7 /* raindrop.png in Resources */,
 				E82B0A041BB9758E008FBAC7 /* Icon-60@3x.png in Resources */,
 				E8C6B82E1B9E2691002B1C78 /* setting-icon.png in Resources */,
@@ -538,6 +568,7 @@
 				E82B0A0E1BB9758E008FBAC7 /* Icon-Small-50@2x.png in Resources */,
 				E82B0A0D1BB9758E008FBAC7 /* Icon-Small-50.png in Resources */,
 				E82B0A081BB9758E008FBAC7 /* Icon-Small@2x.png in Resources */,
+				FFFE1F4E1BC5432000DB7394 /* StartApp.bundle in Resources */,
 				E82B0A021BB9758E008FBAC7 /* Icon-40@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,6 +625,8 @@
 				E8464E8E1BBAC182005BC90D /* PlayWithFriendViewController.m in Sources */,
 				E82B09AF1BAD828F008FBAC7 /* YourGamesViewController.m in Sources */,
 				E83E9CAD1BA84A62006C41F7 /* LogInViewModel.m in Sources */,
+				FFFE1F541BC6A92500DB7394 /* PlayerAndPlayerViewController.m in Sources */,
+				FFFE1F591BC91A8900DB7394 /* ContinuePlayingFriendViewController.m in Sources */,
 				E83E9CB91BA85855006C41F7 /* JoinAGameViewController.m in Sources */,
 				E83E9CB31BA84B5D006C41F7 /* NSObject+BTRACAdditions.m in Sources */,
 				E82B09B21BAD881D008FBAC7 /* SelectedGameViewController.m in Sources */,
@@ -602,6 +635,7 @@
 				E83E9CA41BA6042C006C41F7 /* StartNewGameViewController.m in Sources */,
 				E8C6B82B1B9E2104002B1C78 /* AODHexColors.m in Sources */,
 				E8C6B80C1B9DE3ED002B1C78 /* MainMenuViewController.m in Sources */,
+				FFFE1F5C1BCBA92900DB7394 /* FriendsGamesViewController.m in Sources */,
 				E82B09B51BAD8CB6008FBAC7 /* ShopViewController.m in Sources */,
 				E8C6B8091B9DE3ED002B1C78 /* AppDelegate.m in Sources */,
 				E8C6B8061B9DE3ED002B1C78 /* main.m in Sources */,
@@ -736,10 +770,9 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/d_walker91/Downloads/VungleSDK.embeddedframework,
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
 					"$(PROJECT_DIR)/IOS-InApp",
-					"SDK-InApp-3.1.0",
-					2,
+					"SDK-InApp-3",
 				);
 				INFOPLIST_FILE = addOnDoodle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -754,12 +787,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/d_walker91/Downloads/VungleSDK.embeddedframework,
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
 					"$(PROJECT_DIR)/IOS-InApp",
-					"SDK-InApp-3.1.0",
-					2,
+					"SDK-InApp-3",
 				);
 				INFOPLIST_FILE = addOnDoodle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

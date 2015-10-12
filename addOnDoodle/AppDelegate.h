@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSArray *gameArray;
-
+@property (strong, nonatomic)NSString *friendsName;
+@property (strong, nonatomic) NSMutableArray *friendsGameArray;
+@property (strong, nonatomic) NSString *objectId;
+@property (strong, nonatomic) NSMutableArray *imagesArray;
+@property (strong, nonatomic) NSNumber* chainLength;
 @end
 

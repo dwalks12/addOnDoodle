@@ -38,20 +38,26 @@
 @property (strong, nonatomic) ACEDrawingView *drawingView;
 @property (strong, nonatomic) UIButton *undoButton;
 @property (strong, nonatomic) UIButton *submitButton;
+@property (strong, nonatomic) UIButton *sizeOfBrushButton;
+@property (strong, nonatomic) UISlider *slider;
+@property (strong, nonatomic) UIImageView *sliderBackground;
 
 @end
 
 @implementation StartNewGameViewController{
     int long numberOfColors;
     float colorWidth;
+    BOOL sizePressed;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     colorWidth = (self.view.frame.size.width - 60)/11;
+    
     NSArray *countOfOwnedColors = [NSArray arrayWithArray:[[PFUser currentUser]objectForKey:@"purchased"]];
     //NSLog(@"countof colors = %lu",countOfOwnedColors.count);
     numberOfColors = 12 + (countOfOwnedColors.count *5);
+    sizePressed = NO;
     [self addSubviews];
     [self defineLayouts];
     [self addPurchasedColors];
@@ -81,6 +87,8 @@
     [self.view addSubview:self.drawingView];
     [self.view addSubview:self.undoButton];
     [self.view addSubview:self.submitButton];
+    [self.view addSubview:self.sizeOfBrushButton];
+    [self.drawingView getTheWidth:colorWidth];
     
 }
 -(void)defineLayouts{
@@ -99,7 +107,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view.mas_top).offset(20.0f);
-        make.width.equalTo(self.view);
+        make.width.equalTo(self.view).offset(60.0f);
         make.height.equalTo(@40);
     }];
     [self.bannerBackground mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,21 +116,29 @@
         make.width.equalTo(self.view);
         make.height.equalTo(@60);
     }];
-    [self.undoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(30.0f);
-        make.top.equalTo(self.bannerBackground.mas_bottom).offset(10.0f);
-        make.height.equalTo(@30);
-        make.width.equalTo(@30);
-    }];
+    
     [self.colorScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.undoButton.mas_right).offset(10.0f);
+        make.left.equalTo(self.sizeOfBrushButton.mas_right).offset(5.0f);
         make.top.equalTo(self.bannerBackground.mas_bottom);
-        make.width.equalTo(@(self.view.frame.size.width - (self.undoButton.frame.origin.y + self.undoButton.frame.size.width) - 10));
+        make.width.equalTo(@(self.view.frame.size.width - (self.sizeOfBrushButton.frame.origin.x + self.sizeOfBrushButton.frame.size.width) - 10));
         make.height.equalTo(@(self.view.frame.size.height/14));
     }];
+    
     [self.color1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@5);
         make.centerY.equalTo(self.colorScrollView);
+        make.width.equalTo(@(colorWidth));
+        make.height.equalTo(@(colorWidth));
+    }];
+    [self.undoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset(35.0f);
+        make.centerY.equalTo(self.color1).offset(3.0f);
+        make.height.equalTo(@(colorWidth));
+        make.width.equalTo(@(colorWidth));
+    }];
+    [self.sizeOfBrushButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.undoButton.mas_right).offset(10.0f);
+        make.centerY.equalTo(self.undoButton);
         make.width.equalTo(@(colorWidth));
         make.height.equalTo(@(colorWidth));
     }];
@@ -194,9 +210,9 @@
     }];
     [self.drawingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.height.equalTo(@(self.view.frame.size.height - self.bannerBackground.frame.size.height - 40));
+        make.bottom.equalTo(self.view);
         make.width.equalTo(self.view);
-        make.top.equalTo(self.bannerBackground.mas_bottom).offset(40.0f);
+        make.top.equalTo(self.colorScrollView.mas_bottom);
     }];
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_right).offset(-40.0f);
@@ -229,7 +245,11 @@
     
     self.drawingView.lineColor = clicked.backgroundColor;
 }
-
+-(void)Size:(id)sender{
+    UISlider *slider = (UISlider*)sender;
+    float value = slider.value;
+    self.drawingView.lineWidth = value;
+}
 -(void)undo{
     NSLog(@"drawingview height = %f",self.drawingView.frame.size.height);
     [self.drawingView undoLatestStep];
@@ -368,6 +388,30 @@
     
 }
 
+-(void)selectBrushSize{
+    if(sizePressed == NO){
+        sizePressed = YES;
+        [self.sizeOfBrushButton setBackgroundImage:[UIImage imageNamed:@"colorPalette.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.sliderBackground];
+        [self.view addSubview:self.slider];
+    
+        [self.sliderBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.left.centerY.equalTo(self.colorScrollView);
+            make.right.equalTo(self.view);
+        }];
+        [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.left.centerY.equalTo(self.sliderBackground);
+            make.right.equalTo(self.view).offset(-10.0f);
+        }];
+    }else{
+        sizePressed = NO;
+        [self.sizeOfBrushButton setBackgroundImage:[UIImage imageNamed:@"paintBrush.png"] forState:UIControlStateNormal];
+        [self.sliderBackground removeFromSuperview];
+        [self.slider removeFromSuperview];
+    }
+    
+    
+}
 
 #pragma mark -- properties (lazy load)
 
@@ -376,9 +420,9 @@
     if (!_drawingView) {
         _drawingView = [ACEDrawingView new];
         _drawingView.delegate = self;
-        
+        _drawingView.backgroundColor = [UIColor clearColor];
         _drawingView.lineColor = [UIColor blackColor];
-        _drawingView.lineWidth = 5.0f;
+        _drawingView.lineWidth = 10.0f;
         _drawingView.drawMode = ACEDrawingModeOriginalSize;
         _drawingView.drawTool = ACEDrawingToolTypePen;
     }
@@ -591,7 +635,7 @@
         _colorScrollView = [UIScrollView new];
         _colorScrollView.delegate = self;
         
-        _colorScrollView.contentSize = CGSizeMake(5.0f + (numberOfColors *(colorWidth+5.0f) + 60), 1);
+        _colorScrollView.contentSize = CGSizeMake(5.0f + (numberOfColors *(colorWidth+5.0f) + 120), 1);
         
     }
     return _colorScrollView;
@@ -603,5 +647,33 @@
     }
     return _arrayOfColorButtons;
 }
-
+- (UIButton*)sizeOfBrushButton{
+    if(!_sizeOfBrushButton){
+        _sizeOfBrushButton = [UIButton new];
+        
+        [_sizeOfBrushButton setBackgroundImage:[UIImage imageNamed:@"paintBrush.png"] forState:UIControlStateNormal];
+        [_sizeOfBrushButton addTarget:self action:@selector(selectBrushSize) forControlEvents:UIControlEventTouchUpInside];
+        _sizeOfBrushButton.layer.cornerRadius = _sizeOfBrushButton.frame.size.width/2;
+        _sizeOfBrushButton.layer.masksToBounds = YES;
+    }
+    return _sizeOfBrushButton;
+}
+-(UIImageView *)sliderBackground{
+    if(!_sliderBackground){
+        _sliderBackground = [UIImageView new];
+        _sliderBackground.backgroundColor = [UIColor whiteColor];
+    }
+    return _sliderBackground;
+}
+-(UISlider *)slider{
+    if(!_slider){
+        _slider = [UISlider new];
+        [_slider addTarget:self action:@selector(Size:) forControlEvents:UIControlEventValueChanged];
+        _slider.minimumValue = 1.0;
+        _slider.maximumValue = 50.0;
+        _slider.continuous = YES;
+        _slider.value = 5.0;
+    }
+    return _slider;
+}
 @end

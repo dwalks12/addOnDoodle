@@ -79,35 +79,31 @@
     return self;
 }
 
-
-
+-(CGFloat)getTheWidth:(CGFloat)width{
+    self.shrinkingInkLevels = [[UIView alloc]initWithFrame:CGRectMake(0,-(width+6), width, width-4)];
+    self.shrinkingInkLevels.backgroundColor = [UIColor blackColor];
+    
+    UIImageView *whiteTop = [[UIImageView alloc]initWithFrame:CGRectMake(self.shrinkingInkLevels.frame.origin.x, self.shrinkingInkLevels.frame.origin.y - 10, self.shrinkingInkLevels.frame.size.width, 10)];
+    whiteTop.backgroundColor = [UIColor whiteColor];
+    
+    [self addSubview:self.shrinkingInkLevels];
+    //[self addSubview:whiteTop];
+    self.inkImageView = [[UIButton alloc]initWithFrame:CGRectMake(0, -(width + 6), width, width-4)];
+    [self.inkImageView setImage:[UIImage imageNamed:@"raindrop.png"] forState:UIControlStateNormal];
+    [self.inkImageView addTarget:self action:@selector(resetAmount) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:self.inkImageView];
+    return width;
+}
 - (void)configure
 {
     // init the private arrays
     self.pathArray = [NSMutableArray array];
     self.bufferArray = [NSMutableArray array];
     self.inkLevelArray = [NSMutableArray array];
-    self.shrinkingInkLevels = [[UIView alloc]initWithFrame:CGRectMake(self.frame.size.width,-30, 30, 26)];
-    self.shrinkingInkLevels.backgroundColor = [UIColor blackColor];
+    CGFloat width = self.window.frame.size.width;
+    NSLog(@"the width = %f",width);
     
-    UIImageView *whiteTop = [[UIImageView alloc]initWithFrame:CGRectMake(self.shrinkingInkLevels.frame.origin.x, self.shrinkingInkLevels.frame.origin.y - 10, self.shrinkingInkLevels.frame.size.width, 10)];
-    whiteTop.backgroundColor = [UIColor whiteColor];
-   
-    CALayer *touchedLayer = [self.shrinkingInkLevels layer];
-    // here is an example wiggle
-    CABasicAnimation *wiggle = [CABasicAnimation animationWithKeyPath:@"transform"];
-    wiggle.duration = 0.1;
-    wiggle.repeatCount = 11000;
-    wiggle.autoreverses = YES;
-    wiggle.toValue = [NSValue valueWithCATransform3D:CATransform3DRotate(touchedLayer.transform,0.1, 0.0 ,1.0 ,1.0)];
-    // doing the wiggle
-    [touchedLayer addAnimation:wiggle forKey:@"wiggle"];
-    [self addSubview:self.shrinkingInkLevels];
-    [self addSubview:whiteTop];
-    self.inkImageView = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width, -30, 30, 27)];
-    [self.inkImageView setImage:[UIImage imageNamed:@"raindrop.png"] forState:UIControlStateNormal];
-    [self.inkImageView addTarget:self action:@selector(resetAmount) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.inkImageView];
     distanceTravelled = 0;
     finalDistance = 0;
     // set the default values for the public properties

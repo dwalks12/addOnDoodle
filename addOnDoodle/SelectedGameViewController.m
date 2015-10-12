@@ -348,7 +348,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont fontWithName:@"BubblegumSans-Regular" size:50];
+        _titleLabel.font = [UIFont fontWithName:@"BubblegumSans-Regular" size:38];
         _titleLabel.textColor = [UIColor aod_colorWithHexValue:0xFFFFFF alpha:1.0f];
         _titleLabel.text = @"Your Games";
         _titleLabel.minimumScaleFactor = 0.5;

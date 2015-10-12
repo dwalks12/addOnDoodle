@@ -52,7 +52,7 @@
     UIEdgeInsets insets = UIEdgeInsetsMake(16.f, 16.f, 16.f, 16.f);
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(20.0f);
+        make.top.equalTo(self.view.mas_top).offset(10.0f);
         make.width.equalTo(self.view);
         make.height.equalTo(@60);
     }];
@@ -60,7 +60,7 @@
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view);
         make.width.equalTo(self.view);
-        make.height.equalTo(@80);
+        make.height.equalTo(@60);
     }];
     
     [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,7 +69,12 @@
         make.width.equalTo(self.view);
         make.height.equalTo(self.view);
     }];
-    
+    [self.loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.bannerBackground.mas_bottom).offset(10.0f);
+        make.width.equalTo(self.view);
+        make.height.equalTo(@50);
+    }];
     [self.usernameField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.containerView).insets(insets);
         make.height.equalTo(@50);
@@ -92,20 +97,15 @@
     
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.centerY.equalTo(self.view).offset(-30.f);
+        make.top.equalTo(self.loginLabel.mas_bottom).offset(10.0f);
         make.width.equalTo(@(self.view.frame.size.width - 40));
         make.height.equalTo(@(250));
     }];
     [self.activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.centerY.equalTo(self.view).offset(100.0f);
+        make.top.equalTo(self.containerView.mas_bottom).offset(10.0f);
     }];
-    [self.loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.top.equalTo(self.bannerBackground.mas_bottom).offset(10.0f);
-        make.width.equalTo(self.view);
-        make.height.equalTo(@50);
-    }];
+   
 }
 -(void)setUpSubviews{
     [self.view addSubview:self.backgroundView];
@@ -172,9 +172,9 @@
                     }
                     else{
                         
-                        NSString *personString = [PFUser currentUser].username;
-                        NSString *yourNameEdited = [personString stringByReplacingOccurrencesOfString:@" " withString:@""];
-                        NSString * strippedNumber = [yourNameEdited stringByReplacingOccurrencesOfString:@"[^a-zA-Z]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [yourNameEdited length])];
+                       // NSString *personString = [PFUser currentUser].username;
+                        //NSString *yourNameEdited = [personString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                        //NSString * strippedNumber = [yourNameEdited stringByReplacingOccurrencesOfString:@"[^a-zA-Z]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [yourNameEdited length])];
                         /*
                          [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
                          [[PFInstallation currentInstallation] addUniqueObject:strippedNumber forKey:@"channels"];
@@ -192,15 +192,16 @@
                 
                 NSLog(@"Pfuser = %@",[PFUser currentUser].username);
                 
-                NSString *personString = [PFUser currentUser].username;
-                NSString *yourNameEdited = [personString stringByReplacingOccurrencesOfString:@" " withString:@""];
-                NSString * strippedNumber = [yourNameEdited stringByReplacingOccurrencesOfString:@"[^a-zA-Z]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [yourNameEdited length])];
+                //NSString *personString = [PFUser currentUser].username;
+                //NSString *yourNameEdited = [personString stringByReplacingOccurrencesOfString:@" " withString:@""];
+                //NSString * strippedNumber = [yourNameEdited stringByReplacingOccurrencesOfString:@"[^a-zA-Z]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [yourNameEdited length])];
                 /*
                  [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
                  [[PFInstallation currentInstallation] addUniqueObject:strippedNumber forKey:@"channels"];
                  
                  [[PFInstallation currentInstallation] saveInBackground];
                  */
+                self.activityIndicatorView.hidden = YES;
                 [self.viewModel.loginCommand execute:nil];
                 
             }

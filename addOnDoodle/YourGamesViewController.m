@@ -141,8 +141,8 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view.mas_top).offset(20.0f);
-        make.width.equalTo(self.view);
-        make.height.equalTo(@60);
+        make.width.equalTo(self.view).offset(60.0f);
+        make.height.equalTo(@40);
     }];
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_left).offset(35.0f);
@@ -262,7 +262,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont fontWithName:@"BubblegumSans-Regular" size:40];
+        _titleLabel.font = [UIFont fontWithName:@"BubblegumSans-Regular" size:38];
         _titleLabel.textColor = [UIColor aod_colorWithHexValue:0xFFFFFF alpha:1.0f];
         _titleLabel.text = @"Your Games";
         _titleLabel.minimumScaleFactor = 0.5;

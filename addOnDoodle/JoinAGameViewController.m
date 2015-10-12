@@ -16,8 +16,10 @@
 #import "AppDelegate.h"
 #import "BorderedButton.h"
 #import "ColorPurchases.h"
+#import <StartApp/StartApp.h>
 
-@interface JoinAGameViewController ()<ACEDrawingViewDelegate,UIScrollViewDelegate>
+@interface JoinAGameViewController ()<ACEDrawingViewDelegate,UIScrollViewDelegate,STADelegateProtocol>
+
 @property (strong, nonatomic)UIImageView *bannerBackground;
 @property (strong, nonatomic)UIView *backgroundView;
 @property (strong, nonatomic)UIButton *backButton;
@@ -43,6 +45,9 @@
 @property (strong, nonatomic) UIImageView *recievedImageView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) NSArray *gameArray;
+@property (strong, nonatomic) UIButton *sizeOfBrushButton;
+@property (strong, nonatomic) UISlider *slider;
+@property (strong, nonatomic) UIImageView *sliderBackground;
 @end
 
 @implementation JoinAGameViewController
@@ -50,16 +55,18 @@
     int attempts;
     int long numberOfColors;
     float colorWidth;
+    STAStartAppAd* startAppAd;
+    BOOL sizePressed;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    startAppAd = [[STAStartAppAd alloc] init];
+    [startAppAd loadAdWithDelegate:self];
     attempts = 0;
+    sizePressed = NO;
     colorWidth = (self.view.frame.size.width - 60)/11;
     NSArray *countOfOwnedColors = [NSArray arrayWithArray:[[PFUser currentUser]objectForKey:@"purchased"]];
-    //NSLog(@"countof colors = %lu",countOfOwnedColors.count);
     numberOfColors = 12 + (countOfOwnedColors.count *5);
-    
-    
     self.activityIndicatorView.frame = CGRectMake(self.view.frame.size.width/2 - self.activityIndicatorView.frame.size.width/2, self.view.frame.size.height/2 - self.activityIndicatorView.frame.size.height/2  , self.activityIndicatorView.frame.size.width, self.activityIndicatorView.frame.size.width);
     [self.activityIndicatorView startAnimating];
     [self addSubviews];
@@ -67,24 +74,19 @@
     [self addPurchasedColors];
     [self.view addSubview:self.activityIndicatorView];
     [self findADoodle];
-    
-    // Do any additional setup after loading the view.
 }
 -(void)findADoodle{
     PFQuery * query = [PFQuery queryWithClassName:@"Game"];
     [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(!error){
-            // NSLog(@"%@",objects);
-            // [timer invalidate];
             NSUInteger randomIndex = arc4random() % [objects count];
             
             NSMutableArray *array = [NSMutableArray arrayWithArray:
                                      [objects[randomIndex] valueForKey:@"usersInvolved"]];
             BOOL yourPlaying = NO;
             NSNumber *numberOfRounds = [objects[randomIndex]valueForKey:@"chainLength"];
-            NSLog(@"chainLength = %@",numberOfRounds);
-            if(numberOfRounds.intValue >= 9){
+            if(numberOfRounds.intValue >= 10){
                 [self findADoodle];
             }
             else{
@@ -93,7 +95,6 @@
                     yourPlaying = YES;
                 }
                 else{
-                    //set up your stuff!
                 }
             }
             
@@ -106,34 +107,21 @@
                 NSMutableArray *fileArray = [[NSMutableArray alloc]init];
                 fileArray = [self.gameArray[0] valueForKey:@"imagesArray"];
                 if(fileArray != nil){
-                    
-                   
                     PFFile *imageFile = fileArray[fileArray.count-1];
-                
                     PFImageView *imageView = [[PFImageView alloc]init];
-                    
                     imageView.file = imageFile;
-                    
                     [imageView loadInBackground:^(UIImage *img, NSError *error){
-                        //[self.view addSubview:self.activityIndicatorView];
                         [self.activityIndicatorView stopAnimating];
-                        
                         self.activityIndicatorView.hidden = YES;
-                        
                         self.recievedImageView.image = img;
                         self.recievedImageView.frame = CGRectMake(self.drawingView.frame.origin.x, self.drawingView.frame.origin.y, self.drawingView.frame.size.width, self.drawingView.frame.size.height);
                         [self.view addSubview:self.recievedImageView];
-                        
                         [self.view bringSubviewToFront:self.drawingView];
                         
                     }];
-                    
                 }
-                
-                
             }
             else{
-                //self.activityIndicatorView.hidden = YES;
                 attempts++;
                 if(attempts <= 10){
                     [self findADoodle];
@@ -182,7 +170,6 @@
 -(void)addSubviews{
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.colorScrollView];
-    //[self.view addSubview:self.containerView];
     [self.colorScrollView addSubview:self.color1];
     [self.colorScrollView addSubview:self.color2];
     [self.colorScrollView addSubview:self.color3];
@@ -198,12 +185,11 @@
     [self.view addSubview:self.bannerBackground];
     [self.view addSubview:self.titleLabel];
     [self.view addSubview:self.backButton];
-    //[self.view addSubview:self.recievedImageView];
     [self.view addSubview:self.drawingView];
     [self.view addSubview:self.undoButton];
     [self.view addSubview:self.submitButton];
-    
-    
+    [self.view addSubview:self.sizeOfBrushButton];
+    [self.drawingView getTheWidth:colorWidth];
 }
 -(void)defineLayouts{
     [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -221,7 +207,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view.mas_top).offset(20.0f);
-        make.width.equalTo(self.view);
+        make.width.equalTo(self.view).offset(60.0f);
         make.height.equalTo(@40);
     }];
     [self.bannerBackground mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -230,21 +216,27 @@
         make.width.equalTo(self.view);
         make.height.equalTo(@60);
     }];
-    [self.undoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(30.0f);
-        make.top.equalTo(self.bannerBackground.mas_bottom).offset(10.0f);
-        make.height.equalTo(@30);
-        make.width.equalTo(@30);
-    }];
     [self.colorScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.undoButton.mas_right).offset(10.0f);
+        make.left.equalTo(self.sizeOfBrushButton.mas_right).offset(5.0f);
         make.top.equalTo(self.bannerBackground.mas_bottom);
-        make.width.equalTo(@(self.view.frame.size.width - (self.undoButton.frame.origin.y + self.undoButton.frame.size.width) - 10));
+        make.width.equalTo(@(self.view.frame.size.width - (self.sizeOfBrushButton.frame.origin.x + self.sizeOfBrushButton.frame.size.width) - 10));
         make.height.equalTo(@(self.view.frame.size.height/14));
     }];
     [self.color1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@5);
         make.centerY.equalTo(self.colorScrollView);
+        make.width.equalTo(@(colorWidth));
+        make.height.equalTo(@(colorWidth));
+    }];
+    [self.undoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset(35.0f);
+        make.centerY.equalTo(self.color1).offset(3.0f);
+        make.height.equalTo(@(colorWidth));
+        make.width.equalTo(@(colorWidth));
+    }];
+    [self.sizeOfBrushButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.undoButton.mas_right).offset(10.0f);
+        make.centerY.equalTo(self.undoButton);
         make.width.equalTo(@(colorWidth));
         make.height.equalTo(@(colorWidth));
     }];
@@ -316,9 +308,9 @@
     }];
     [self.drawingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.height.equalTo(@(self.view.frame.size.height - self.bannerBackground.frame.size.height - 40));
+        make.bottom.equalTo(self.view);
         make.width.equalTo(self.view);
-        make.top.equalTo(self.bannerBackground.mas_bottom).offset(40.0f);
+        make.top.equalTo(self.colorScrollView.mas_bottom);
     }];
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_right).offset(-40.0f);
@@ -326,9 +318,6 @@
         make.width.equalTo(@80);
         make.height.equalTo(@40);
     }];
-    
-    
-    
 }
 #pragma mark -- ACTIONS
 -(void)addPurchasedColors{
@@ -338,26 +327,16 @@
     float xn = 0;
     for(int i = 0;i < arrayOfPurchasedColors.count;i ++){
         for(int l = 0;l<[ColorPurchases nameOfColors].count;l++){
-            
-            
-            //NSLog(@"array of purchased count = %lu  %@",(unsigned long)arrayOfPurchasedColors.count,arrayOfPurchasedColors);
-            
             if([arrayOfPurchasedColors[i]isEqualToString:[ColorPurchases nameOfColors][l]]){
                 count++;
                 method = NSSelectorFromString( [NSString stringWithFormat:@"colorScheme%i",l+1]);
                 NSArray *colorScheme1 = [ColorPurchases performSelector:method];
-                //NSLog(@"colorScheme1 = %@",colorScheme1);
                 for(int q = 0;q<colorScheme1.count;q++){
                     unsigned colorInt = 0;
-                    
-                    
                     [[NSScanner scannerWithString:colorScheme1[q]] scanHexInt:&colorInt];
-                    
                     xn += (colorWidth+5.0f);
-                    
                     UIButton *colorButton = [[BorderedButton alloc]init];
                     colorButton.backgroundColor = [UIColor aod_colorWithHexValue:colorInt alpha:1.0f];
-                    //colorButton.backgroundColor = [UIColor blackColor];
                     colorButton.layer.cornerRadius = 4.0f;
                     colorButton.layer.masksToBounds = YES;
                     [colorButton addTarget:self action:@selector(Color:) forControlEvents:UIControlEventTouchUpInside];
@@ -374,22 +353,13 @@
                                            }];
                                        });
                                    });
-                    // NSLog(@"%@",colorButton);
                     [self.arrayOfColorButtons addObject:colorButton];
                 }
             }
         }
-        
-        
-        
     }
-    NSLog(@"number of added colors = %i",count);
 }
-- (void)scrollViewDidScroll:(UIScrollView *)aScrollView
-{
-    // or if you are sure you wanna it always on top:
-    // [aScrollView setContentOffset: CGPointMake(aScrollView.contentOffset.x, 0)];
-}
+
 -(void)Color:(id)sender{
     UIButton *clicked = (UIButton *) sender;
     for(int i = 0;i<self.arrayOfColorButtons.count;i++){
@@ -401,9 +371,6 @@
             [(UIButton*)self.arrayOfColorButtons[i] setSelected:YES];
         }
     }
-    
-    
-    
     self.drawingView.lineColor = clicked.backgroundColor;
 }
 
@@ -412,14 +379,40 @@
 }
 
 -(void)backToMain{
-   
-    
+    NSLog(@"does this get called");
     UIViewAnimationTransition trans = UIViewAnimationTransitionCurlUp;
     [UIView beginAnimations: nil context: nil];
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationTransition: trans forView: [self.view window] cache: YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     [UIView commitAnimations];
+}
+-(void)Size:(id)sender{
+    UISlider *slider = (UISlider*)sender;
+    float value = slider.value;
+    self.drawingView.lineWidth = value;
+}
+-(void)selectBrushSize{
+    if(sizePressed == NO){
+        sizePressed = YES;
+        [self.sizeOfBrushButton setBackgroundImage:[UIImage imageNamed:@"colorPalette.png"] forState:UIControlStateNormal];
+        [self.view addSubview:self.sliderBackground];
+        [self.view addSubview:self.slider];
+        
+        [self.sliderBackground mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.left.centerY.equalTo(self.colorScrollView);
+            make.right.equalTo(self.view);
+        }];
+        [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.left.centerY.equalTo(self.sliderBackground);
+            make.right.equalTo(self.view).offset(-10.0f);
+        }];
+    }else{
+        sizePressed = NO;
+        [self.sizeOfBrushButton setBackgroundImage:[UIImage imageNamed:@"paintBrush.png"] forState:UIControlStateNormal];
+        [self.sliderBackground removeFromSuperview];
+        [self.slider removeFromSuperview];
+    }
 }
 
 -(void)submitDrawing{
@@ -442,17 +435,6 @@
     [self.view drawViewHierarchyInRect:CGRectMake(0, -self.drawingView.frame.origin.y, self.view.bounds.size.width, self.view.bounds.size.height) afterScreenUpdates:YES];
     UIImage *capturedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    //ADD THIS LATER
-    // NSMutableArray *pathArray = [[NSMutableArray alloc]init];
-    // pathArray = self.drawingView.accessFinishedPathsArray;
-    
-    //NSTimeInterval timeInterval = self.drawingView.accessTimeInterval;
-    // NSMutableArray *chosenColors = self.drawingView.accessChosenColors;
-    //NSMutableArray *chosenWidth = self.drawingView.accessChosenWidths;
-    //NSInteger timeInt = timeInterval;
-    //NSData *data = [NSKeyedArchiver archivedDataWithRootObject:pathArray];
-    //NSData *colorData = [NSKeyedArchiver archivedDataWithRootObject:chosenColors];
-    
     NSData * fileData = UIImagePNGRepresentation(capturedImage);
     PFFile* file = [PFFile fileWithName:@"image.png" data:fileData];
     [file saveInBackground];
@@ -464,30 +446,39 @@
     
     [userArray addObject:[PFUser currentUser].username];
     NSArray *userArrayCopy = [NSArray arrayWithArray:userArray];
-    
-    
     PFObject *object = [PFObject objectWithoutDataWithClassName:@"Game" objectId:[self.gameArray[0] valueForKey:@"objectId"]];
-    
     [object setObject:userArrayCopy forKey:@"usersInvolved"];
     [object setObject:imageArrayCopy forKey:@"imagesArray"];
-    //[object setObject:[NSString stringWithFormat:@"writing"] forKey:@"whatsNext"];
-    //[object setObject:data forKey:@"pathArray"];
-    //[object setObject:colorData forKey:@"chosenColors"];
-    //[object setObject:chosenWidth forKey:@"chosenWidth"];
-    // [object setObject:[NSNumber numberWithInteger:timeInt] forKey:@"timeInterval"];
     [object incrementKey:@"chainLength"];
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(!error){
-            //[self.activityIndicatorView stopAnimating];
-            //self.activityIndicatorView.hidden = YES;
-            //[self dismissViewControllerAnimated:YES completion:nil];
-            [self backToMain];
+           
+            [startAppAd showAd];
+            
         }
         
         
     }];
 }
-
+- (void) didLoadAd:(STAAbstractAd*)ad{
+    
+}
+- (void) failedLoadAd:(STAAbstractAd*)ad withError:(NSError *)error{
+    
+}
+- (void) didShowAd:(STAAbstractAd*)ad{
+    
+}
+- (void) failedShowAd:(STAAbstractAd*)ad withError:(NSError *)error{
+    [self backToMain];
+}
+- (void) didCloseAd:(STAAbstractAd*)ad{
+    NSLog(@"why didnt you close!");
+    [self backToMain];
+}
+- (void) didClickAd:(STAAbstractAd*)ad{
+    [self backToMain];
+}
 - (ACEDrawingView *)drawingView {
     if (!_drawingView) {
         _drawingView = [ACEDrawingView new];
@@ -511,7 +502,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont fontWithName:@"BubblegumSans-Regular" size:35];
+        _titleLabel.font = [UIFont fontWithName:@"BubblegumSans-Regular" size:24];
         _titleLabel.textColor = [UIColor aod_colorWithHexValue:0xFFFFFF alpha:1.0f];
         _titleLabel.text = @"Add A Doodle";
         _titleLabel.minimumScaleFactor = 0.4;
@@ -559,7 +550,6 @@
 -(UIImageView *)recievedImageView{
     if(!_recievedImageView){
         _recievedImageView = [UIImageView new];
-        //_recievedImageView.backgroundColor = [UIColor brownColor];
     }
     
     return _recievedImageView;
@@ -590,7 +580,6 @@
     }
     return _color1;
 }
-
 - (UIButton *)color2 {
     if (!_color2) {
         _color2 = [BorderedButton new];
@@ -603,7 +592,6 @@
     }
     return _color2;
 }
-
 - (UIButton *)color3 {
     if (!_color3) {
         _color3 = [BorderedButton new];
@@ -615,7 +603,6 @@
     }
     return _color3;
 }
-
 - (UIButton *)color4 {
     if (!_color4) {
         _color4 = [BorderedButton new];
@@ -627,7 +614,6 @@
     }
     return _color4;
 }
-
 - (UIButton *)color5 {
     if (!_color5) {
         _color5 = [BorderedButton new];
@@ -639,7 +625,6 @@
     }
     return _color5;
 }
-
 - (UIButton *)color6 {
     if (!_color6) {
         _color6 = [BorderedButton new];
@@ -651,7 +636,6 @@
     }
     return _color6;
 }
-
 - (UIButton *)color7 {
     if (!_color7) {
         _color7 = [BorderedButton new];
@@ -663,7 +647,6 @@
     }
     return _color7;
 }
-
 - (UIButton *)color8 {
     if (!_color8) {
         _color8 = [BorderedButton new];
@@ -675,7 +658,6 @@
     }
     return _color8;
 }
-
 - (UIButton *)color9 {
     if (!_color9) {
         _color9 = [BorderedButton new];
@@ -687,7 +669,6 @@
     }
     return _color9;
 }
-
 - (UIButton *)color10 {
     if (!_color10) {
         _color10 = [BorderedButton new];
@@ -699,7 +680,6 @@
     }
     return _color10;
 }
-
 - (UIButton *)color11 {
     if (!_color11) {
         _color11 = [BorderedButton new];
@@ -711,7 +691,6 @@
     }
     return _color11;
 }
-
 -(UIButton *)color12{
     if(!_color12){
         _color12 = [BorderedButton new];
@@ -729,7 +708,7 @@
         _colorScrollView = [UIScrollView new];
         _colorScrollView.delegate = self;
         
-        _colorScrollView.contentSize = CGSizeMake(5.0f + (numberOfColors *(colorWidth+5.0f) + 60), 1);
+        _colorScrollView.contentSize = CGSizeMake(5.0f + (numberOfColors *(colorWidth+5.0f) + 120), 1);
         
     }
     return _colorScrollView;
@@ -740,5 +719,34 @@
         
     }
     return _arrayOfColorButtons;
+}
+- (UIButton*)sizeOfBrushButton{
+    if(!_sizeOfBrushButton){
+        _sizeOfBrushButton = [UIButton new];
+        
+        [_sizeOfBrushButton setBackgroundImage:[UIImage imageNamed:@"paintBrush.png"] forState:UIControlStateNormal];
+        [_sizeOfBrushButton addTarget:self action:@selector(selectBrushSize) forControlEvents:UIControlEventTouchUpInside];
+        _sizeOfBrushButton.layer.cornerRadius = _sizeOfBrushButton.frame.size.width/2;
+        _sizeOfBrushButton.layer.masksToBounds = YES;
+    }
+    return _sizeOfBrushButton;
+}
+-(UIImageView *)sliderBackground{
+    if(!_sliderBackground){
+        _sliderBackground = [UIImageView new];
+        _sliderBackground.backgroundColor = [UIColor whiteColor];
+    }
+    return _sliderBackground;
+}
+-(UISlider *)slider{
+    if(!_slider){
+        _slider = [UISlider new];
+        [_slider addTarget:self action:@selector(Size:) forControlEvents:UIControlEventValueChanged];
+        _slider.minimumValue = 1.0;
+        _slider.maximumValue = 50.0;
+        _slider.continuous = YES;
+        _slider.value = 5.0;
+    }
+    return _slider;
 }
 @end
